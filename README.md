@@ -1,93 +1,77 @@
-# 🔍 Industrial Anomaly Detection with CNNs on MVTec Dataset
+# 🧠 Industrial Anomaly Detection with ResNet on MVTec Dataset
 
-This project applies a **Convolutional Neural Network (CNN)** based approach, using **ResNet**, to detect visual anomalies in industrial inspection tasks. Using the **MVTec Anomaly Detection Dataset**, the goal is to classify images of objects as either normal or defective.
-
----
-
-## 📦 Dataset: MVTec Anomaly Detection
-
-The MVTec dataset consists of **15 object categories** commonly found in industrial applications. Each category contains:
-
-- ✅ **Training Set**: Only normal (non-defective) images
-- 🚨 **Test Set**: Both normal and anomalous images
-- All images are resized to `224x224` and normalized during preprocessing.
-
-Example categories: `bottle`, `hazelnut`, `wood`, `tile`, `carpet`, `leather`, `screw`, `pill`, etc.
-
-🔗 [Official Dataset Site](https://www.mvtec.com/company/research/datasets/mvtec-ad)
+This project implements an image-based **anomaly detection** system using **Convolutional Neural Networks (CNNs)**, specifically **ResNet**, on the **MVTec Anomaly Detection Dataset**. It is part of the final coursework for the **Vision for Industry** class.
 
 ---
 
-## 🧠 Why ResNet?
+## 🧾 Project Overview
 
-- **Deeper architecture** enables learning of complex patterns
-- **Residual connections** solve vanishing gradient issues
-- Proven **high performance in image classification tasks**
+The goal is to accurately detect and classify defects in industrial product images by learning from only **normal (defect-free)** training samples. The project evaluates model performance using standard classification metrics like accuracy, confusion matrix, and ROC-AUC.
 
 ---
 
-## 🧪 Methodology
+## 🗂️ Dataset: MVTec Anomaly Detection
 
-1. **Data Preprocessing**:
-   - Resize images to 224x224
-   - Normalize pixel values
+- **15 industrial categories**: bottle, wood, tile, leather, screw, hazelnut, etc.
+- **Training Set**: Only normal images
+- **Test Set**: Includes both normal and anomalous images
+- All images are resized to **224x224** and normalized
 
-2. **Model Architecture**:
-   - Based on pretrained **ResNet**
-   - Custom classification head
-
-3. **Training Strategy**:
-   - Trained on normal samples only
-   - Evaluated on normal + defective images
-   - Evaluated using Accuracy, Confusion Matrix, ROC-AUC
+🔗 [MVTec Dataset Website](https://www.mvtec.com/company/research/datasets/mvtec-ad)
 
 ---
 
-## 📈 Results
+## 🧠 Model Architecture
 
-- **AUC Score**: `0.94`
-- **High-performing categories**: Leather, Wood, Carpet, Hazelnut, Bottle
-- **Moderate performance**: Tile, Transistor, Toothbrush
-- **Low performance**: Capsule, Screw
-
-### Confusion Matrix
-
-- True Positives: `185`
-- True Negatives: `698`
-- False Positives: `28`
-- False Negatives: `67`
+- **Base Model**: Pretrained ResNet
+- **Transfer Learning**: Final layers adapted for binary classification (normal vs anomaly)
+- **Loss Function**: Binary Cross Entropy
+- **Optimizer**: Adam
+- **Epochs**: Tuned for best validation accuracy
 
 ---
 
-## 🎥 Demo & Visuals
+## 📊 Evaluation Results
 
-Check the Jupyter Notebook for:
-- NDVI visualizations
-- ROC curve
-- Model predictions (correctly & incorrectly classified)
+- ✅ **AUC Score**: 0.94 (Excellent distinction between normal and defective)
+- ✅ **High accuracy** in categories like:
+  - Leather, Wood, Carpet (1.00)
+  - Hazelnut (0.98), Bottle (0.98), Tile (0.96), Zipper (0.96)
+- 🔍 **Moderate to low accuracy** in categories like:
+  - Toothbrush, Pill, Capsule, Screw
 
----
+### 🔢 Confusion Matrix
 
-## 📊 Project Files
-
-| File | Description |
-|------|-------------|
-| `VisionFinal.ipynb` | Notebook with full model, training, and evaluation |
-| `Project.pptx` | Final project presentation |
-
----
-
-## 🧠 Future Improvements
-
-- Introduce **autoencoders** or **GAN-based anomaly detection**
-- Fine-tune the model per category
-- Use **attention-based mechanisms** to improve weak-performing classes
+- **True Positives**: 185  
+- **True Negatives**: 698  
+- **False Positives**: 28  
+- **False Negatives**: 67  
 
 ---
 
-## 👥 Authors
+## 📈 Key Visualizations
 
-- **Ozgur GUmus** (910427)
+- ROC Curve and AUC
+- Confusion Matrix
+- Category-wise accuracy
+- Sample predictions (correct/incorrect)
 
 ---
 
+## 🚀 Future Work
+
+- Use Autoencoders or GANs for unsupervised anomaly detection
+- Introduce class-specific fine-tuning
+- Use Grad-CAM for visual explainability of defects
+
+---
+
+## 👤 Author
+
+**Ozgur Gumus**   
+Vision for Industry – Final Project  
+Università degli Studi di Milano, 2024
+
+---
+
+> This project demonstrates practical application of deep learning for industrial quality control using real-world datasets.
